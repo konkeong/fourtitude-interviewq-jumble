@@ -1,0 +1,215 @@
+openapi: 3.0.1
+info:
+  description: REST API for a game engine with mechanics of guessing words from given
+    a list of scrambled letters.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  title: Guessing Words Game REST API
+  version: "1.0"
+servers:
+- description: Generated server url
+  url: http://localhost:8080
+tags:
+- description: Guessing words game REST API endpoint.
+  name: Game API
+paths:
+  /api/game/guess:
+    post:
+      description: "Submits a guessed `word`, along with `id` to play the game."
+      operationId: playGame
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/asia.fourtitude.interviewq.jumble.model.GameGuessInput'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                All Guessed:
+                  description: All words guessed.
+                  value:
+                    result: All words guessed.
+                    id: 353ee769-a472-4704-a5f2-d525f181a03e
+                    original_word: gloomy
+                    scramble_word: gomlyo
+                    guess_word: moo
+                    total_words: 9
+                    remaining_words: 0
+                    guessed_words:
+                    - goo
+                    - gym
+                    - log
+                    - loo
+                    - moo
+                    - glom
+                    - logo
+                    - loom
+                    - gloom
+                Guessed Correctly First Time:
+                  description: Guessed correctly the first time.
+                  value:
+                    result: Guessed correctly.
+                    id: 88b4278c-5141-42af-86e6-2a1d4cfa5f3b
+                    original_word: ranker
+                    scramble_word: nekarr
+                    guess_word: rank
+                    total_words: 15
+                    remaining_words: 14
+                    guessed_words:
+                    - rank
+                Guessed Correctly Subsequent:
+                  description: Guessed correctly with subsequent word.
+                  value:
+                    result: Guessed correctly.
+                    id: e23a268c-e4af-4123-a610-755e34ac201c
+                    original_word: burger
+                    scramble_word: rerugb
+                    guess_word: rug
+                    total_words: 15
+                    remaining_words: 7
+                    guessed_words:
+                    - bug
+                    - bur
+                    - err
+                    - rug
+                    - burr
+                    - grub
+                    - rube
+                    - urge
+                Guessed Incorrectly:
+                  description: Guessed with incorrect word.
+                  value:
+                    result: Guessed incorrectly.
+                    id: 88b4278c-5141-42af-86e6-2a1d4cfa5f3b
+                    original_word: ranker
+                    scramble_word: rnraek
+                    guess_word: answer
+                    total_words: 15
+                    remaining_words: 15
+                    guessed_words: []
+              schema:
+                $ref: '#/components/schemas/asia.fourtitude.interviewq.jumble.model.GameGuessOutput'
+          description: Success
+        "404":
+          content:
+            application/json:
+              examples:
+                Invalid ID:
+                  description: The input `ID` is invalid.
+                  value:
+                    result: Invalid Game ID.
+                Record not found:
+                  description: "The `ID` is correct format, but game board/state is\
+                    \ not found in system."
+                  value:
+                    result: Game board/state not found.
+              schema:
+                $ref: '#/components/schemas/asia.fourtitude.interviewq.jumble.model.GameGuessOutput'
+          description: Not Found
+      summary: Submits word to play the game
+      tags:
+      - Game API
+  /api/game/new:
+    get:
+      description: Creates a new game board/state and registered into game engine
+        referenced by `id`. All subsequent operation/play is tied to `id`.
+      operationId: newGame
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Success:
+                  description: Created a new game/board and registered into system.
+                  value:
+                    result: Created new game.
+                    id: 65e0d7a4-59bf-4065-beb1-3c2220d87e1e
+                    original_word: titans
+                    scramble_word: nisatt
+                    total_words: 29
+                    remaining_words: 29
+                    guessed_words: []
+              schema:
+                $ref: '#/components/schemas/asia.fourtitude.interviewq.jumble.model.GameGuessOutput'
+          description: Success
+      summary: Creates new game board/state
+      tags:
+      - Game API
+components:
+  schemas:
+    asia.fourtitude.interviewq.jumble.model.GameGuessInput:
+      type: object
+      description: Submits the `word` to guess.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the game state.
+          example: 4579256c-326f-4169-9b56-6d1d1a2c11f0
+          title: ID
+        word:
+          type: string
+          description: The word to guess.
+          example: answer
+          maxLength: 30
+          minLength: 3
+          title: Word
+      required:
+      - id
+      - word
+    asia.fourtitude.interviewq.jumble.model.GameGuessOutput:
+      type: object
+      properties:
+        guess_word:
+          type: string
+          description: "The word used in guessing play, if available."
+          example: motto
+          maxLength: 30
+          minLength: 3
+        guessed_words:
+          type: array
+          description: The list of words guessed correctly.
+          example: EMPTY_LIST
+          items:
+            type: string
+            description: The list of words guessed correctly.
+            example: EMPTY_LIST
+        id:
+          type: string
+          description: Unique identifier of the game state.
+          example: 4579256c-326f-4169-9b56-6d1d1a2c11f0
+          title: ID
+        original_word:
+          type: string
+          description: Original word in game.
+          example: tomato
+          maxLength: 30
+          minLength: 3
+        remaining_words:
+          type: integer
+          format: int32
+          default: 0
+          description: The numbers of remaining smaller/sub words to guess.
+          example: 23
+        result:
+          type: string
+          description: Result message.
+          example: "AnyOf[\"Guessed correctly\", \"Guessed incorrectly\", \"Guessed\
+            \ already\"]"
+          title: Result
+        scramble_word:
+          type: string
+          description: Scramble letters of the word in game.
+          example: amotto
+          maxLength: 30
+          minLength: 3
+        total_words:
+          type: integer
+          format: int32
+          default: 0
+          description: "The numbers of smaller/sub words, constructed using the letters\
+            \ from `original_word`."
+          example: 31

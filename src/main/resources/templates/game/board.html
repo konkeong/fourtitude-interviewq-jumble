@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}"
+      lang="en">
+<head>
+    <title>Game</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="bg-light rounded p-4">
+        <div class="d-flex justify-content-between mb-4">
+            <h2 class="text-primary-emphasis">Guess Words</h2>
+        </div>
+        <div th:if="${board.state == null}" class="text-left">
+            <p>Click <a th:href="@{/game/new}">here</a> to start game.</p>
+        </div>
+        <div th:if="${board.state != null}" th:with="guessedWords=${board.state.guessedWords},remaining=${board.state.subWords.size()-guessedWords.size()}" class="col-sm-12 col-xl-12">
+            <div th:if="${guessedWords.size() == 0}" class="bg-light rounded h-100 p-4">
+                <p>No word guessed yet.</p>
+            </div>
+            <div th:if="${guessedWords.size() > 0}" class="bg-light rounded h-100 p-4">
+                <p>Words guessed: <span th:text="${guessedWords.size()}"></span></p>
+                <ol>
+                    <li th:each="word: ${guessedWords}"><span th:text="${word}"></span></li>
+                </ol>
+            </div>
+            <div th:if="${remaining == 0}" class="bg-light rounded h-100 p-4">
+                <p>Original: <span th:text="${board.state.original}"></span></p>
+                <p>Scrambled letters: <span th:text="${board.state.scrambleAsDisplay}"></span></p>
+                <p>Click <a th:href="@{/game/new}">here</a> to start game.</p>
+            </div>
+            <div th:if="${remaining > 0}" class="bg-light rounded h-100 p-4">
+                <p>Total possible: <span th:text="${board.state.subWords.size()}"></span></p>
+                <p>Remaining words: <span th:text="${remaining}"></span></p>
+                <p>Original: <span th:text="${board.state.original}"></span></p>
+                <p>Scrambled letters: <span th:text="${board.state.scrambleAsDisplay}"></span></p>
+                <form th:action="@{/game/play}" th:object="${board}" id="frmGameBoard" method="post">
+                    <div class="row mb-3">
+                        <label for="iptWord" class="col-sm-2 col-form-label">Word</label>
+                        <div class="col-sm-6">
+                            <input type="text" th:field="*{word}" class="form-control" th:errorclass="is-invalid" id="iptWord" aria-describedby="iptWordFeedback"/>
+                        </div>
+                        <label th:if="${#fields.hasErrors('word')}" th:errors="*{word}" id="iptWordFeedback" class="col-sm-4 text-danger is-invalid">Word Error</label>
+                    </div>
+                    <div class="row mb-3">
+                        <span class="col-sm-2"></span>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-primary">Guess</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--/*-->
+            <div class="bg-light rounded h-100 p-4" th:if="${board.state.subWords != null}">
+                <p>The number of words: <span th:text="${board.state.subWords.size()}"></span></p>
+                <ol>
+                    <li th:each="word: ${board.state.subWords}"><span th:text="${word}"></span></li>
+                </ol>
+            </div>
+            <!--*/-->
+        </div>
+    </div>
+</div>
+<script layout:fragment="contentScript">
+// https://stackoverflow.com/a/2345915
+function setFocusToInput() {
+    var iptWord = document.getElementById('iptWord')
+    iptWord.focus();
+    var iptValue = iptWord.value;
+    if (iptValue.length > 0) {
+        iptWord.value = '';
+        iptWord.value = iptValue;
+    }
+}
+setFocusToInput();
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}"
+      lang="en">
+<head>
+    <title>Sub Words</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="bg-light rounded p-4">
+        <div class="d-flex justify-content-between mb-4">
+            <h2 class="text-primary-emphasis">Sub Words</h2>
+        </div>
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-light rounded h-100 p-4">
+                <form th:action="@{/subWords}" th:object="${form}" id="frmSubWords" method="post">
+                    <div class="row mb-3">
+                        <label for="iptWord" class="col-sm-2 col-form-label">Word*</label>
+                        <div class="col-sm-6">
+                            <input type="text" th:field="*{word}" class="form-control" th:errorclass="is-invalid" id="iptWord" aria-describedby="iptWordFeedback"/>
+                        </div>
+                        <label th:if="${#fields.hasErrors('word')}" th:errors="*{word}" id="iptWordFeedback" class="col-sm-4 text-danger is-invalid">Word Error</label>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="iptMinLength" class="col-sm-2 col-form-label">Minimum Length</label>
+                        <div class="col-sm-6">
+                            <input type="number" th:field="*{minLength}" class="form-control" th:errorclass="is-invalid" id="iptMinLength" aria-describedby="iptMinLengthFeedback"/>
+                        </div>
+                        <label th:if="${#fields.hasErrors('minLength')}" th:errors="*{minLength}" id="iptMinLengthFeedback" class="col-sm-4 text-danger is-invalid">MinLength Error</label>
+                    </div>
+                    <div class="row mb-3">
+                        <span class="col-sm-2"></span>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <a th:href="@{/subWords}" class="btn btn-secondary">Reset</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="bg-light rounded h-100 p-4" th:if="${form.words != null}">
+                <p>The number of words: <span th:text="${form.words.size()}"></span></p>
+                <ol>
+                    <li th:each="word: ${form.words}"><span th:text="${word}"></span></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<script layout:fragment="contentScript">
+function resetForm() {
+    document.getElementById('iptWord').value = '';
+}
+</script>
+</body>
+</html>

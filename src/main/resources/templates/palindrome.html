@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}"
+      lang="en">
+<head>
+    <title>Palindrome Words</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="bg-light rounded p-4">
+        <div class="d-flex justify-content-between mb-4">
+            <h2 class="text-primary-emphasis">Palindrome Words</h2>
+        </div>
+        <div class="text-left">
+            <p>The number of palindrome words: <span th:text="${words.size()}"></span></p>
+            <ol>
+                <li th:each="word: ${words}"><span th:text="${word}"></span></li>
+            </ol>
+        </div>
+    </div>
+</div>
+</body>
+</html>

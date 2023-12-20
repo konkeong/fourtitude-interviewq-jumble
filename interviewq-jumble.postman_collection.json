@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "2fd3e143-eaae-47dd-b487-f28c2efe3cb5",
+		"name": "interviewq-jumble",
+		"description": "# Guessing Words Game REST API\n\n* Version: 1.0 \n\nREST API for a game engine with mechanics of guessing words from given a list of scrambled letters.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "112379"
+	},
+	"item": [
+		{
+			"name": "1. Create New Game",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(responseBody);\r",
+							"var responseData = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"game_id\", responseData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_api}}/new",
+					"host": [
+						"{{url_api}}"
+					],
+					"path": [
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Play Game",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"{{game_id}}\",\r\n  \"word\": \"lion\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url_api}}/guess",
+					"host": [
+						"{{url_api}}"
+					],
+					"path": [
+						"guess"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url_api",
+			"value": "http://localhost:8080/api/game",
+			"type": "string"
+		},
+		{
+			"key": "game_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

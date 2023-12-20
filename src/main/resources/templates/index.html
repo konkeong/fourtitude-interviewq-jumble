@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}"
+      lang="en">
+<head>
+    <title>Index</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="bg-light rounded p-4">
+        <div class="d-flex justify-content-between mb-4">
+            <p>The time now: <span th:text="${#temporals.format(timeNow, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+        </div>
+        <div class="text-left">
+            <p>Guessing Words Game REST API</p>
+            <ul>
+                <li><a th:href="@{/api-docs}">OpenAPI documentation (JSON)</a></li>
+                <li><a th:href="@{/api-docs.yaml}">OpenAPI documentation (YAML)</a></li>
+                <li><a th:href="@{/swagger-ui.html}">Swagger UI</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}"
+      lang="en">
+<head>
+    <title>Game</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="bg-light rounded p-4">
+        <div class="d-flex justify-content-between mb-4">
+            <h2 class="text-primary-emphasis">Guess Words - Help</h2>
+        </div>
+        <div class="text-left">
+            <p>Given a list of scrambled letters, guess all the possible words, using at least 3 letters (or more).</p>
+            <p>Click <a th:href="@{/game/play}">here</a> to play game.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
