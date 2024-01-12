@@ -1,5 +1,6 @@
 package asia.fourtitude.interviewq.jumble.console;
 
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Collection;
 import java.util.Scanner;
@@ -10,7 +11,7 @@ public class ConsoleApp extends AConsole {
 
     private final JumbleEngine engine;
 
-    public ConsoleApp(Scanner cin, PrintStream cout) {
+    public ConsoleApp(Scanner cin, PrintStream cout) throws IOException {
         super(cin, cout);
         this.engine = new JumbleEngine();
     }
@@ -32,7 +33,7 @@ public class ConsoleApp extends AConsole {
         }
     }
 
-    private void palindrome() {
+    private void palindrome() throws IOException {
         cout.println();
         cout.println("Palindrome Words");
         cout.println("----------------");
@@ -50,7 +51,7 @@ public class ConsoleApp extends AConsole {
         }
     }
 
-    private void wordExists() {
+    private void wordExists() throws IOException {
         cout.println();
         cout.println("Word Exists");
         cout.println("-----------");
@@ -64,7 +65,7 @@ public class ConsoleApp extends AConsole {
         }
     }
 
-    private void wordsMatchingPrefix() {
+    private void wordsMatchingPrefix() throws IOException {
         cout.println();
         cout.println("Word Matching Prefix");
         cout.println("--------------------");
@@ -88,7 +89,7 @@ public class ConsoleApp extends AConsole {
         }
     }
 
-    private void searchWords() {
+    private void searchWords() throws IOException {
         Character startChar = null;
         Character endChar = null;
         Integer length = null;
@@ -138,7 +139,7 @@ public class ConsoleApp extends AConsole {
         }
     }
 
-    private void generateSubWords() {
+    private void generateSubWords() throws IOException {
         cout.println();
         cout.println("Generate Sub Words");
         cout.println("------------------");
@@ -175,7 +176,7 @@ public class ConsoleApp extends AConsole {
         }
     }
 
-    public void run() {
+    public void run() throws IOException {
         boolean exit = false;
         boolean finish = false;
         do {
@@ -231,7 +232,7 @@ public class ConsoleApp extends AConsole {
         } while (! finish && ! exit);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new ConsoleApp(new Scanner(System.in), new PrintStream(System.out)).run();
     }
 

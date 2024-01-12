@@ -1,6 +1,9 @@
 package asia.fourtitude.interviewq.jumble.controller;
 
+import java.io.IOException;
 import java.time.ZonedDateTime;
+import java.util.Collection;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -58,12 +61,12 @@ public class RootController {
          * c) Presentation page to show the result
          * d) Must pass the corresponding unit tests
          */
-
+        form.setScramble(jumbleEngine.scramble(form.getWord()));
         return "scramble";
     }
 
     @GetMapping("palindrome")
-    public String doGetPalindrome(Model model) {
+    public String doGetPalindrome(Model model) throws IOException {
         model.addAttribute("words", this.jumbleEngine.retrievePalindromeWords());
         return "palindrome";
     }
@@ -77,7 +80,7 @@ public class RootController {
     @PostMapping("exists")
     public String doPostExists(
             @Valid @ModelAttribute(name = "form") ExistsForm form,
-            BindingResult bindingResult, Model model) {
+            BindingResult bindingResult, Model model) throws IOException {
         /*
          * TODO:
          * a) Validate the input `form`
@@ -85,7 +88,7 @@ public class RootController {
          * c) Presentation page to show the result
          * d) Must pass the corresponding unit tests
          */
-
+        form.setExists(jumbleEngine.exists(form.getWord()));
         return "exists";
     }
 
@@ -98,7 +101,7 @@ public class RootController {
     @PostMapping("prefix")
     public String doPostPrefix(
             @Valid @ModelAttribute(name = "form") PrefixForm form,
-            BindingResult bindingResult, Model model) {
+            BindingResult bindingResult, Model model) throws IOException {
         /*
          * TODO:
          * a) Validate the input `form`
@@ -106,7 +109,7 @@ public class RootController {
          * c) Presentation page to show the result
          * d) Must pass the corresponding unit tests
          */
-
+        form.setWords(jumbleEngine.wordsMatchingPrefix(form.getPrefix()));
         return "prefix";
     }
 
@@ -119,29 +122,37 @@ public class RootController {
     @PostMapping("search")
     public String doPostSearch(
             @Valid @ModelAttribute(name = "form") SearchForm form,
-            BindingResult bindingResult, Model model) {
+            BindingResult bindingResult, Model model) throws IOException {
         /*
          * TODO:
          * a) Validate the input `form`
-         * b) Show the fields error accordingly: "Invalid startChar", "Invalid endChar", "Invalid length".
+         * b) Show the fields error accordingly: "Invalid startChar", "Invalid endChar",
+         * "Invalid length".
          * c) To call JumbleEngine#searchWords()
          * d) Presentation page to show the result
          * e) Must pass the corresponding unit tests
          */
+        if(form.getStartChar()!=null && form.getStartChar().isEmpty() || form.getEndChar()!=null && form.getEndChar().isEmpty()) return "search";
 
+        Character startChar = form.getStartChar() == null ? null : form.getStartChar().charAt(0);
+        Character endChar = form.getEndChar() == null ? null : form.getEndChar().charAt(0);
+        Integer length = form.getLength() == null ? null : form.getLength();
+
+        form.setWords(jumbleEngine.searchWords(startChar,endChar,length));
         return "search";
     }
 
     @GetMapping("subWords")
     public String goGetSubWords(Model model) {
         model.addAttribute("form", new SubWordsForm());
+
         return "subWords";
     }
 
     @PostMapping("subWords")
     public String doPostSubWords(
             @Valid @ModelAttribute(name = "form") SubWordsForm form,
-            BindingResult bindingResult, Model model) {
+            BindingResult bindingResult, Model model) throws IOException {
         /*
          * TODO:
          * a) Validate the input `form`
@@ -149,8 +160,16 @@ public class RootController {
          * c) Presentation page to show the result
          * d) Must pass the corresponding unit tests
          */
-
+        form.setWords(jumbleEngine.generateSubWords(form.getWord(), form.getMinLength()));
         return "subWords";
+    }
+
+    // method for testing purpose
+    static void printer(Collection<String> results) {
+        System.out.println("---------------------------------------");
+        for (String r : results) {
+            System.out.println(r);
+        }
     }
 
 }

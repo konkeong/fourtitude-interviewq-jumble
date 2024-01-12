@@ -1,5 +1,6 @@
 package asia.fourtitude.interviewq.jumble.controller;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -67,7 +68,7 @@ public class WordApiController {
                     description = "The prefix.",
                     required = true,
                     example = "awe")
-            @PathVariable String prefix) {
+            @PathVariable String prefix) throws IOException {
         prefix = StringUtils.trimToEmpty(prefix);
         if (prefix.length() < 3) {
             return new ResponseEntity<>(Collections.emptyList(), HttpStatus.OK);

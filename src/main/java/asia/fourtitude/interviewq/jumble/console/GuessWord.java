@@ -1,5 +1,6 @@
 package asia.fourtitude.interviewq.jumble.console;
 
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
 import java.util.Scanner;
@@ -82,7 +83,7 @@ public class GuessWord extends AConsole {
         return exit;
     }
 
-    public boolean exec() {
+    public boolean exec() throws IOException {
         boolean exit = false;
         boolean finish = false;
         do {

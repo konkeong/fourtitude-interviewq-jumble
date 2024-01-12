@@ -1,5 +1,7 @@
 package asia.fourtitude.interviewq.jumble.controller;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +66,7 @@ public class GameWebController {
     }
 
     @GetMapping("/new")
-    public String doGetNew(@ModelAttribute(name = "board") GameBoard board) {
+    public String doGetNew(@ModelAttribute(name = "board") GameBoard board) throws IOException {
         GameState state = this.jumbleEngine.createGameState(6, 3);
 
         /*
@@ -74,7 +76,8 @@ public class GameWebController {
          * b) Presentation page to show the information of game board/state
          * c) Must pass the corresponding unit tests
          */
-
+        board.setState(state);
+        board.setWord("");
         return "game/board";
     }
 
@@ -88,7 +91,7 @@ public class GameWebController {
     @PostMapping("/play")
     public String doPostPlay(
             @ModelAttribute(name = "board") GameBoard board,
-            BindingResult bindingResult, Model model) {
+            BindingResult bindingResult, Model model) throws IOException {
         if (board == null || board.getState() == null) {
             // session expired
             return "game/board";
@@ -105,6 +108,11 @@ public class GameWebController {
          * e) Presentation page to show the information of game board/state
          * f) Must pass the corresponding unit tests
          */
+        if(!jumbleEngine.generateSubWords(board.getState().getOriginal(), null).contains(board.getWord())){
+            bindingResult.rejectValue("word", "word.incorrect","Guessed incorrectly");
+        } else {
+            board.getState().updateGuessWord(board.getWord());
+        }
 
         return "game/board";
     }

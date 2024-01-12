@@ -1,5 +1,6 @@
 package asia.fourtitude.interviewq.jumble.controller;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -74,7 +75,7 @@ public class GameApiController {
                                                             "  \"guessed_words\": []\n" +
                                                             "}") })) })
     @GetMapping(value = "/new", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<GameGuessOutput> newGame() {
+    public ResponseEntity<GameGuessOutput> newGame() throws IOException {
         /*
          * Refer to the method's Javadoc (above) and implement accordingly.
          * Must pass the corresponding unit tests.

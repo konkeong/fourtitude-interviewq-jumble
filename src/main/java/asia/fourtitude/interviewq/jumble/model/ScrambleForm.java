@@ -9,6 +9,7 @@ public class ScrambleForm {
     @Size(min = 3, max = 30)
     private String word;
 
+    
     private String scramble;
 
     public String getWord() {
