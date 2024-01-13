@@ -19,7 +19,7 @@ public class GameGuessInput {
             example = "4579256c-326f-4169-9b56-6d1d1a2c11f0",
             nullable = false,
             requiredMode = RequiredMode.REQUIRED)
-    @NotNull
+    @NotNull(message = "Invalid Game ID.")
     private String id;
 
     @Schema(
@@ -31,7 +31,7 @@ public class GameGuessInput {
             nullable = false,
             requiredMode = RequiredMode.REQUIRED)
     @NotBlank
-    @Size(min = 3, max = 30)
+    @Size(min = 3, max = 30, message = "Word cannot be blank")
     private String word;
 
     public String getId() {
