@@ -87,6 +87,7 @@ public class GameApiController {
                  */
                 GameGuessModel ggm = new GameGuessModel();
 
+                // initialize the output
                 output.setResult("Created new game.");
                 output.setId(UUID.randomUUID().toString());
                 output.setOriginalWord(gameState.getOriginal());
@@ -95,10 +96,12 @@ public class GameApiController {
                 output.setRemainingWords(output.getTotalWords());
                 output.setGuessedWords(gameState.getGuessedWords());
 
+                // initialize game guess model
                 ggm.setCreatedAt(new Date());
                 ggm.setGameState(gameState);
                 ggm.setId(output.getId());
 
+                // store game guess model into hashmap with corresponding id
                 gameBoards.put(output.getId(), ggm);
 
                 return new ResponseEntity<>(output, HttpStatus.OK);
@@ -214,7 +217,7 @@ public class GameApiController {
                                 if (input.getWord() == null) {
                                         // if guessed word is null
                                         ggm = gameBoards.get(input.getId());
-                                        output.setResult("Guessed incorrectly");
+                                        output.setResult("Guessed Incorrectly.");
                                         updateData(input, output, ggm);
                                         return new ResponseEntity<>(output, HttpStatus.OK);
                                 } else {
@@ -235,26 +238,27 @@ public class GameApiController {
         private void updateData(GameGuessInput input, GameGuessOutput output, GameGuessModel ggm) {
                 GameState gm = ggm.getGameState();
 
-                if (isWinning(gm)) {
-                        output.setResult("All words guessed.");
-                }
-
                 if (input.getWord() != null) {
-                        output.setResult(gm.updateGuessWord(input.getWord().trim()) ? "Guessed correctly"
-                                        : "Guessed Incorrectly");
+                        output.setResult(gm.updateGuessWord(input.getWord().trim()) ? "Guessed correctly."
+                                        : "Guessed Incorrectly.");
+
                 }
 
                 output.setId(ggm.getId());
                 output.setOriginalWord(gm.getOriginal());
                 output.setScrambleWord(gm.getScramble());
                 output.setGuessedWords(gm.getGuessedWords());
-                output.setGuessWord(input.getWord() == null ? null : input.getWord());
+                output.setGuessWord(input.getWord() == null ? "null" : input.getWord());
                 output.setTotalWords(gm.getSubWords().size());
                 output.setRemainingWords(gm.getSubWords().size() - gm.getGuessedWords().size());
+
+                if (isWinning(gm)) {
+                        output.setResult("All words guessed.");
+                }
         }
 
         private boolean isWinning(GameState gm) {
-                return gm.getSubWords().size() - gm.getGuessedWords().size() == 0;
+                return (gm.getSubWords().size() - gm.getGuessedWords().size()) == 0;
         }
 
 }
