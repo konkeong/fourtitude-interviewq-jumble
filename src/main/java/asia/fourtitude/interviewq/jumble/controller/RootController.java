@@ -2,8 +2,6 @@ package asia.fourtitude.interviewq.jumble.controller;
 
 import java.time.ZonedDateTime;
 
-import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +47,7 @@ public class RootController {
 
     @PostMapping("scramble")
     public String doPostScramble(
-            @Valid @ModelAttribute(name = "form") ScrambleForm form,
+            @ModelAttribute(name = "form") ScrambleForm form,
             BindingResult bindingResult, Model model) {
         /*
          * TODO:
@@ -76,7 +74,7 @@ public class RootController {
 
     @PostMapping("exists")
     public String doPostExists(
-            @Valid @ModelAttribute(name = "form") ExistsForm form,
+            @ModelAttribute(name = "form") ExistsForm form,
             BindingResult bindingResult, Model model) {
         /*
          * TODO:
@@ -97,7 +95,7 @@ public class RootController {
 
     @PostMapping("prefix")
     public String doPostPrefix(
-            @Valid @ModelAttribute(name = "form") PrefixForm form,
+            @ModelAttribute(name = "form") PrefixForm form,
             BindingResult bindingResult, Model model) {
         /*
          * TODO:
@@ -118,7 +116,7 @@ public class RootController {
 
     @PostMapping("search")
     public String doPostSearch(
-            @Valid @ModelAttribute(name = "form") SearchForm form,
+            @ModelAttribute(name = "form") SearchForm form,
             BindingResult bindingResult, Model model) {
         /*
          * TODO:
@@ -140,7 +138,7 @@ public class RootController {
 
     @PostMapping("subWords")
     public String doPostSubWords(
-            @Valid @ModelAttribute(name = "form") SubWordsForm form,
+            @ModelAttribute(name = "form") SubWordsForm form,
             BindingResult bindingResult, Model model) {
         /*
          * TODO:

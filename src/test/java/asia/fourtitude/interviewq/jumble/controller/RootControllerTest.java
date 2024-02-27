@@ -210,6 +210,22 @@ class RootControllerTest {
                 .andExpect(view().name("search"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("The number of words: ")));
+
+        this.mockMvc.perform(post("/search")
+                    .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                    .param("startChar", "a")
+                    .param("endChar", ""))
+            .andExpect(view().name("search"))
+            .andExpect(status().isOk())
+            .andExpect(content().string(containsString("The number of words: ")));
+
+        this.mockMvc.perform(post("/search")
+                    .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                    .param("startChar", "")
+                    .param("endChar", "a"))
+            .andExpect(view().name("search"))
+            .andExpect(status().isOk())
+            .andExpect(content().string(containsString("The number of words: ")));
     }
 
     @Test
