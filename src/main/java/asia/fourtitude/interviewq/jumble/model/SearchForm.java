@@ -2,6 +2,7 @@ package asia.fourtitude.interviewq.jumble.model;
 
 import java.util.Collection;
 
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 public class SearchForm {
@@ -12,7 +13,7 @@ public class SearchForm {
     @Size(min = 0, max = 1)
     private String endChar;
 
-    @javax.validation.constraints.Positive
+    @Positive
     private Integer length;
 
     private Collection<String> words;

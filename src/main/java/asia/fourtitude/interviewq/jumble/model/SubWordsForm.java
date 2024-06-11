@@ -3,6 +3,7 @@ package asia.fourtitude.interviewq.jumble.model;
 import java.util.Collection;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 public class SubWordsForm {
@@ -11,7 +12,7 @@ public class SubWordsForm {
     @Size(min = 3, max = 30)
     private String word;
 
-    @javax.validation.constraints.Positive
+    @Positive
     private Integer minLength;
 
     private Collection<String> words;
