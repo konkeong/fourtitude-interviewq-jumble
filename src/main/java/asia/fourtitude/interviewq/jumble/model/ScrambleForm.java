@@ -1,12 +1,7 @@
 package asia.fourtitude.interviewq.jumble.model;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
 public class ScrambleForm {
 
-    @NotBlank
-    @Size(min = 3, max = 30)
     private String word;
 
     private String scramble;

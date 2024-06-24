@@ -2,13 +2,8 @@ package asia.fourtitude.interviewq.jumble.model;
 
 import java.util.Collection;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
 public class PrefixForm {
 
-    @NotBlank
-    @Size(min = 1, max = 30)
     private String prefix;
 
     private Collection<String> words;

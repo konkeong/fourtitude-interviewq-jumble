@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-public /*record*/ class GameState {
+public /* record */ class GameState {
 
     private final String original;
 
