@@ -23,7 +23,13 @@ class JumbleEngineTest {
     void scramble() {
         String word = "elephant";
         String actual = engine.scramble(word);
-        assertNotEquals(word, actual);
+        assertNotEquals(actual, word);
+
+        word = "egg";
+        for (int ix = 0; ix < 100; ix += 1) {
+            String scrambled = engine.scramble(word);
+            assertNotEquals(scrambled, word);
+        }
     }
 
     @Test
