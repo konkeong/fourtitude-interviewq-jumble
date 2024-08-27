@@ -48,5 +48,38 @@
     });
 
 
+    $(document).ready(function () {
+        const locPathname = $(location).attr('pathname');
+        if (locPathname === '/game/new') {
+            $('#mnuItmGameNew').addClass('active');
+            $('#mnuDivGame').addClass('show');
+        } else if (locPathname === '/game/play') {
+            $('#mnuItmGamePlay').addClass('active');
+            $('#mnuDivGame').addClass('show');
+        } else if (locPathname === '/game/help') {
+            $('#mnuItmGameHelp').addClass('active');
+            $('#mnuDivGame').addClass('show');
+        } else if (locPathname === '/scramble') {
+            $('#mnuItmScramble').addClass('active');
+            $('#mnuDivRoot').addClass('show');
+        } else if (locPathname === '/palindrome') {
+            $('#mnuItmPalindrome').addClass('active');
+            $('#mnuDivRoot').addClass('show');
+        } else if (locPathname === '/exists') {
+            $('#mnuItmExists').addClass('active');
+            $('#mnuDivRoot').addClass('show');
+        } else if (locPathname === '/prefix') {
+            $('#mnuItmPrefix').addClass('active');
+            $('#mnuDivRoot').addClass('show');
+        } else if (locPathname === '/search') {
+            $('#mnuItmSearch').addClass('active');
+            $('#mnuDivRoot').addClass('show');
+        } else if (locPathname === '/subWords') {
+            $('#mnuItmSubWords').addClass('active');
+            $('#mnuDivRoot').addClass('show');
+        } else {
+            $('#mnuItmHome').addClass('active');
+        }
+    });
 })(jQuery);
 

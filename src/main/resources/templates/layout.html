@@ -43,24 +43,24 @@
                     <h3 class="text-primary">JUMBLE</h3>
                 </a>
                 <div class="navbar-nav w-100">
-                    <a th:href="@{/}" class="nav-item nav-link active"><i class="fa fa-home me-2"></i>Home</a>
+                    <a id="mnuItmHome" th:href="@{/}" class="nav-item nav-link"><i class="fa fa-home me-2"></i>Home</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-th me-2"></i>Core</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a th:href="@{/scramble}" class="dropdown-item">Scramble Word</a>
-                            <a th:href="@{/palindrome}" class="dropdown-item">Palindrome Words</a>
-                            <a th:href="@{/exists}" class="dropdown-item">Word Exists</a>
-                            <a th:href="@{/prefix}" class="dropdown-item">Words Matching Prefix</a>
-                            <a th:href="@{/search}" class="dropdown-item">Search Words</a>
-                            <a th:href="@{/subWords}" class="dropdown-item">Sub Words</a>
+                        <a id="mnuGrpRoot" href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-th me-2"></i>Core</a>
+                        <div id="mnuDivRoot" class="dropdown-menu bg-transparent border-0">
+                            <a id="mnuItmScramble" th:href="@{/scramble}" class="dropdown-item">Scramble Word</a>
+                            <a id="mnuItmPalindrome" th:href="@{/palindrome}" class="dropdown-item">Palindrome Words</a>
+                            <a id="mnuItmExists" th:href="@{/exists}" class="dropdown-item">Word Exists</a>
+                            <a id="mnuItmPrefix" th:href="@{/prefix}" class="dropdown-item">Words Matching Prefix</a>
+                            <a id="mnuItmSearch" th:href="@{/search}" class="dropdown-item">Search Words</a>
+                            <a id="mnuItmSubWords" th:href="@{/subWords}" class="dropdown-item">Sub Words</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-keyboard me-2"></i>Game</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a th:href="@{/game/new}" class="dropdown-item">New</a>
-                            <a th:href="@{/game/play}" class="dropdown-item">Play</a>
-                            <a th:href="@{/game/help}" class="dropdown-item">Help</a>
+                        <a id="mnuGrpGame" href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-keyboard me-2"></i>Game</a>
+                        <div id="mnuDivGame" class="dropdown-menu bg-transparent border-0">
+                            <a id="mnuItmGameNew" th:href="@{/game/new}" class="dropdown-item">New</a>
+                            <a id="mnuItmGamePlay" th:href="@{/game/play}" class="dropdown-item">Play</a>
+                            <a id="mnuItmGameHelp" th:href="@{/game/help}" class="dropdown-item">Help</a>
                         </div>
                     </div>
                 </div>
