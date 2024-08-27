@@ -74,7 +74,7 @@ class JumbleEngineTest {
     }
 
     @Test
-    void givenValidPrefix_thenSometWords() {
+    void givenValidPrefix_thenSomeWords() {
         assertEquals(5234, engine.wordsMatchingPrefix("p").size(), "prefix=p");
         assertEquals(714, engine.wordsMatchingPrefix("pe").size(), "prefix=pe");
         assertEquals(96, engine.wordsMatchingPrefix("pen").size(), "prefix=pen");
@@ -88,7 +88,7 @@ class JumbleEngineTest {
     }
 
     @Test
-    void givenValidPrefixCaseInsensitive_thenSometWords() {
+    void givenValidPrefixCaseInsensitive_thenSomeWords() {
         assertEquals(engine.wordsMatchingPrefix("PeN").size(), engine.wordsMatchingPrefix("pen").size(), "prefix=CASE_INSENSITIVE");
     }
 
