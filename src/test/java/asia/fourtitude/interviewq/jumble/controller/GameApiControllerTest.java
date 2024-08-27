@@ -90,7 +90,7 @@ class GameApiControllerTest {
     }
 
     @Test
-    void givenCreateNewGame_whenSubmiNullWord_thenGuessedIncorrectly() throws Exception {
+    void givenCreateNewGame_whenSubmitNullWord_thenGuessedIncorrectly() throws Exception {
         /*
          * Doing HTTP POST "/api/game/guess"
          *
