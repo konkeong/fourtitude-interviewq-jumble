@@ -95,8 +95,8 @@ public class ConsoleApp extends AConsole {
         StringBuilder sbCond = new StringBuilder();
 
         cout.println();
-        cout.println("Sarching for Words");
-        cout.println("------------------");
+        cout.println("Searching for Words");
+        cout.println("-------------------");
         cout.print("Starting character (ENTER to ignore): ");
         String input = cin.nextLine().trim();
         if (! input.isEmpty()) {
