@@ -60,6 +60,7 @@ public class JumbleEngine {
      * c) bonus points, if able to implement a fast lookup/scheme
      *
      * @param length  The word picked, must of length.
+     *                When length is null, then return random word of any length.
      * @return  One of the word (randomly) from word list.
      *          Or null if none matching.
      */
