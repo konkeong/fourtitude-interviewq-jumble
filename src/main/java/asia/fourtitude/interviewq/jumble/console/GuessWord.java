@@ -90,8 +90,8 @@ public class GuessWord extends AConsole {
             cout.println("Guess Words");
             cout.println("-----------");
             cout.println("   n. new game");
-            cout.println("   h: help");
-            cout.println("   q: quit");
+            cout.println("   h. help");
+            cout.println("   q. quit");
 
             String option = askInput(null);
             switch (option) {

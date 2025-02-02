@@ -188,7 +188,7 @@ public class ConsoleApp extends AConsole {
             cout.println("   5. search words");
             cout.println("   6. generate sub words");
             cout.println("  11. play game");
-            cout.println("   q: quit");
+            cout.println("   q. quit");
 
             String option = askInput(null);
             switch (option) {
