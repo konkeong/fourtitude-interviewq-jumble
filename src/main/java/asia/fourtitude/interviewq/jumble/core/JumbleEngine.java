@@ -157,6 +157,8 @@ public class JumbleEngine {
      *
      * If length of input `word` is less than `minLength`, then return empty list.
      *
+     * The sub words must exist in internal word list.
+     *
      * Example: From "yellow" and `minLength` = 3, the output sub words:
      *     low, lowly, lye, ole, owe, owl, well, welly, woe, yell, yeow, yew, yowl
      *
