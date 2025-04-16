@@ -158,7 +158,9 @@ public class ConsoleApp extends AConsole {
         if (minLength != null) {
             conditions = conditions + " minLength=[" + minLength + "]";
         }
+        long tStart = System.currentTimeMillis();
         Collection<String> words = engine.generateSubWords(baseWord, minLength);
+        long tStop = System.currentTimeMillis();
         if (words.isEmpty()) {
             cout.printf("No words found: %s%n", conditions);
         } else {
@@ -173,6 +175,7 @@ public class ConsoleApp extends AConsole {
                 cout.printf("%3d. %s%n", pos, word);
             }
         }
+        cout.println((tStop - tStart) + " msec");
     }
 
     public void run() {
