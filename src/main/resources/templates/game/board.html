@@ -40,9 +40,9 @@
                     <div class="row mb-3">
                         <label for="iptWord" class="col-sm-2 col-form-label">Word</label>
                         <div class="col-sm-6">
-                            <input type="text" th:field="*{word}" class="form-control" th:errorclass="is-invalid" id="iptWord" aria-describedby="iptWordFeedback"/>
+                            <input type="text" th:field="*{word}" class="form-control" th:errorclass="is-invalid" id="iptWord" aria-describedby="iptWordFeedback" />
                         </div>
-                        <label th:if="${#fields.hasErrors('word')}" th:errors="*{word}" id="iptWordFeedback" class="col-sm-4 text-danger is-invalid">Word Error</label>
+                        <span th:if="${#fields.hasErrors('word')}" th:errors="*{word}" id="iptWordFeedback" class="col-sm-4 text-danger is-invalid">Word Error</span>
                     </div>
                     <div class="row mb-3">
                         <span class="col-sm-2"></span>

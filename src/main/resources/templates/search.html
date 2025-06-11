@@ -19,23 +19,23 @@
                     <div class="row mb-3">
                         <label for="iptStartChar" class="col-sm-2 col-form-label">Start Character</label>
                         <div class="col-sm-6">
-                            <input type="text" maxlength="1" th:field="*{startChar}" class="form-control" th:errorclass="is-invalid" id="iptStartChar" aria-describedby="iptStartCharFeedback"/>
+                            <input type="text" maxlength="1" th:field="*{startChar}" class="form-control" th:errorclass="is-invalid" id="iptStartChar" aria-describedby="iptStartCharFeedback" />
                         </div>
-                        <label th:if="${#fields.hasErrors('startChar')}" th:errors="*{startChar}" id="iptStartCharFeedback" class="col-sm-4 text-danger is-invalid">StartChar Error</label>
+                        <span th:if="${#fields.hasErrors('startChar')}" th:errors="*{startChar}" id="iptStartCharFeedback" class="col-sm-4 text-danger is-invalid">StartChar Error</span>
                     </div>
                     <div class="row mb-3">
                         <label for="iptEndChar" class="col-sm-2 col-form-label">End Character</label>
                         <div class="col-sm-6">
-                            <input type="text" maxlength="1" th:field="*{endChar}" class="form-control" th:errorclass="is-invalid" id="iptEndChar" aria-describedby="iptEndCharFeedback"/>
+                            <input type="text" maxlength="1" th:field="*{endChar}" class="form-control" th:errorclass="is-invalid" id="iptEndChar" aria-describedby="iptEndCharFeedback" />
                         </div>
-                        <label th:if="${#fields.hasErrors('endChar')}" th:errors="*{endChar}" id="iptEndCharFeedback" class="col-sm-4 text-danger is-invalid">EndChar Error</label>
+                        <span th:if="${#fields.hasErrors('endChar')}" th:errors="*{endChar}" id="iptEndCharFeedback" class="col-sm-4 text-danger is-invalid">EndChar Error</span>
                     </div>
                     <div class="row mb-3">
                         <label for="iptLength" class="col-sm-2 col-form-label">Length</label>
                         <div class="col-sm-6">
-                            <input type="number" th:field="*{length}" class="form-control" th:errorclass="is-invalid" id="iptLength" aria-describedby="iptLengthFeedback"/>
+                            <input type="number" th:field="*{length}" class="form-control" th:errorclass="is-invalid" id="iptLength" aria-describedby="iptLengthFeedback" />
                         </div>
-                        <label th:if="${#fields.hasErrors('length')}" th:errors="*{length}" id="iptLengthFeedback" class="col-sm-4 text-danger is-invalid">Length Error</label>
+                        <span th:if="${#fields.hasErrors('length')}" th:errors="*{length}" id="iptLengthFeedback" class="col-sm-4 text-danger is-invalid">Length Error</span>
                     </div>
                     <div class="row mb-3">
                         <span class="col-sm-2"></span>

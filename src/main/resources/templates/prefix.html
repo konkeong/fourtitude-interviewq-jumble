@@ -19,9 +19,9 @@
                     <div class="row mb-3">
                         <label for="iptPrefix" class="col-sm-2 col-form-label">Prefix*</label>
                         <div class="col-sm-6">
-                            <input type="text" th:field="*{prefix}" class="form-control" th:errorclass="is-invalid" id="iptPrefix" aria-describedby="iptPrefixFeedback"/>
+                            <input type="text" th:field="*{prefix}" class="form-control" th:errorclass="is-invalid" id="iptPrefix" aria-describedby="iptPrefixFeedback" />
                         </div>
-                        <label th:if="${#fields.hasErrors('prefix')}" th:errors="*{prefix}" id="iptPrefixFeedback" class="col-sm-4 text-danger is-invalid">Prefix Error</label>
+                        <span th:if="${#fields.hasErrors('prefix')}" th:errors="*{prefix}" id="iptPrefixFeedback" class="col-sm-4 text-danger is-invalid">Prefix Error</span>
                     </div>
                     <div class="row mb-3">
                         <span class="col-sm-2"></span>
