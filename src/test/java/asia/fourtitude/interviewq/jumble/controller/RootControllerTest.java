@@ -283,7 +283,7 @@ class RootControllerTest {
                         .param("startChar", "are"))
                 .andExpect(view().name("search"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<label id=\"iptStartCharFeedback\" class=\"col-sm-4 text-danger is-invalid\">size must be between 0 and 1</label>")));
+                .andExpect(content().string(containsString("<span id=\"iptStartCharFeedback\" class=\"col-sm-4 text-danger is-invalid\">size must be between 0 and 1</span>")));
     }
 
     @Test
@@ -293,7 +293,7 @@ class RootControllerTest {
                         .param("endChar", "at"))
                 .andExpect(view().name("search"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<label id=\"iptEndCharFeedback\" class=\"col-sm-4 text-danger is-invalid\">size must be between 0 and 1</label>")));
+                .andExpect(content().string(containsString("<span id=\"iptEndCharFeedback\" class=\"col-sm-4 text-danger is-invalid\">size must be between 0 and 1</span>")));
     }
 
     @Test
@@ -303,7 +303,7 @@ class RootControllerTest {
                         .param("length", "a"))
                 .andExpect(view().name("search"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<label id=\"iptLengthFeedback\" class=\"col-sm-4 text-danger is-invalid\">Failed to convert property value of type java.lang.String to required type java.lang.Integer for property length; nested exception is java.lang.NumberFormatException: For input string: &quot;a&quot;</label>")));
+                .andExpect(content().string(containsString("<span id=\"iptLengthFeedback\" class=\"col-sm-4 text-danger is-invalid\">Failed to convert property value of type java.lang.String to required type java.lang.Integer for property length; nested exception is java.lang.NumberFormatException: For input string: &quot;a&quot;</span>")));
     }
 
     @Test
@@ -372,7 +372,7 @@ class RootControllerTest {
                         .param("minLength", "9"))
                 .andExpect(view().name("subWords"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<label id=\"iptWordFeedback\" class=\"col-sm-4 text-danger is-invalid\">")));
+                .andExpect(content().string(containsString("<span id=\"iptWordFeedback\" class=\"col-sm-4 text-danger is-invalid\">")));
     }
 
 }
