@@ -9,7 +9,7 @@ public class JumbleEngine {
      * From the input `word`, produces/generates a copy which has the same
      * letters, but in different ordering.
      *
-     * Example: from "elephant" to "aeehlnpt".
+     * Example: from "elephant" to "lehnaetp".
      *
      * Evaluation/Grading:
      * a) pass unit test: JumbleEngineTest#scramble()
